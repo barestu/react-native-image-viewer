@@ -20,6 +20,7 @@ import ImageZoom from 'react-native-image-zoom-fixed';
 import ImageSize from 'react-native-image-size';
 import styles from './image-viewer.style';
 import { IImageInfo, IImageSize, Props, State } from './image-viewer.type';
+import FastImage from 'react-native-fast-image';
 
 export default class ImageViewer extends React.Component<Props, State> {
   public static defaultProps = new Props();
@@ -210,7 +211,7 @@ export default class ImageViewer extends React.Component<Props, State> {
       (width: number, height: number) => {
         imageStatus.width = width;
         imageStatus.height = height;
-        imageStatus.zoomLevel =  this.width / width;
+        imageStatus.zoomLevel = this.width / width;
         imageStatus.status = 'success';
         saveImageSize();
       },
@@ -581,7 +582,8 @@ export default class ImageViewer extends React.Component<Props, State> {
               minScale={minZoom || this.props.minScale}
               maxScale={this.props.maxScale}
             >
-              {this!.props!.renderImage!(image.props)}
+              {/* {this!.props!.renderImage!(image.props)} */}
+              <FastImage {...image.props} />
             </ImageZoom>
           );
         case 'fail':
